@@ -1,8 +1,27 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  respond_to :xml, :json
 
-  # GET /jobs
-  # GET /jobs.json
+  def fetch_html
+    @job = Job.new(job_params)
+
+   if @job.save
+    render :json => { jobID: @job.id }, :callback => params[:callback]
+   else
+    render :json => { errors: @job.errors, status: :unprocessable_entity }, :callback => params[:callback]
+   end
+  end
+
+  def fetch_job_status
+    job = Job.find(params[:id])
+    job_status = job.completed? ? job : { jobID: job.id, status: "IN_PROGRESS" }
+    render :json => job_status, :callback => params[:callback]
+  end
+
+  def invalid_route
+    render :json => { error: 'invalid route' }, :callback => params[:callback]
+  end
+
   def index
     @jobs = Job.all
   end
@@ -10,6 +29,11 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    @job = Job.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @job }
+    end
   end
 
   # GET /jobs/new

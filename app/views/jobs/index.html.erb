@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Url</th>
       <th>Html</th>
       <th>Server code</th>
@@ -16,7 +17,8 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr>
-        <td><%= job.url %></td>
+        <td><%= link_to job.id, job %></td>
+        <td><%= link_to job.url, job.url %></td>
         <td><%= job.html %></td>
         <td><%= job.server_code %></td>
         <td><%= job.completed %></td>

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
+  get '/jobs/fetchJobStatus/:id'  => 'jobs#fetch_job_status'
+  post '/jobs/fetchHTML'          => 'jobs#fetch_html'
+  get '/jobs/fetchHTML'           => 'jobs#invalid_route'
+  post '/jobs/fetchJobStatus/:id' => 'jobs#invalid_route'
   resources :jobs
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,4 @@
-<%= form_for(@job) do |f| %>
+<%= form_for @job, url: { action: 'fetch_html' } do |f| %>
   <% if @job.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
@@ -14,18 +14,6 @@
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :html %><br>
-    <%= f.text_area :html %>
-  </div>
-  <div class="field">
-    <%= f.label :server_code %><br>
-    <%= f.number_field :server_code %>
-  </div>
-  <div class="field">
-    <%= f.label :completed %><br>
-    <%= f.check_box :completed %>
   </div>
   <div class="actions">
     <%= f.submit %>
