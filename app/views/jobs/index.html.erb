@@ -19,7 +19,7 @@
       <tr>
         <td><%= link_to job.id, job %></td>
         <td><%= link_to job.url, job.url %></td>
-        <td><%= job.html %></td>
+        <td><%= job.html.to_s %></td>
         <td><%= job.server_code %></td>
         <td><%= job.completed %></td>
         <td><%= link_to 'Show', job %></td>

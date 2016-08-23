@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post '/jobs/fetchJobStatus/:id' => 'jobs#invalid_route'
   resources :jobs
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

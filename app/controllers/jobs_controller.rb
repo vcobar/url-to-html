@@ -6,6 +6,8 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
 
    if @job.save
+    # send job to queue
+    FetchHtmlWorker.perform_async(@job.id)
     render :json => { jobID: @job.id }, :callback => params[:callback]
    else
     render :json => { errors: @job.errors, status: :unprocessable_entity }, :callback => params[:callback]
