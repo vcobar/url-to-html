@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  html: MyText
+  server_code: 1
+  completed: false
+
+two:
+  url: MyString
+  html: MyText
+  server_code: 1
+  completed: false
