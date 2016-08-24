@@ -28,7 +28,7 @@ gem 'sidekiq'
 gem 'metainspector'
 gem 'sinatra', require: false
 gem 'slim'
-gem 'htmlentities'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
+  get '/jobs/fetchJob/:id'        => 'jobs#fetch_job'
+  post '/jobs/fetchJob/:id'       => 'jobs#invalid_route'
   get '/jobs/fetchJobStatus/:id'  => 'jobs#fetch_job_status'
-  post '/jobs/fetchHTML'          => 'jobs#fetch_html'
-  get '/jobs/fetchHTML'           => 'jobs#invalid_route'
   post '/jobs/fetchJobStatus/:id' => 'jobs#invalid_route'
+  post '/jobs/fetchHTML'          => 'jobs#fetch_html'
+  get '/jobs/fetchHTML'           => 'jobs#fetch_html'
   resources :jobs
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq'
+
+  root :to => "jobs#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

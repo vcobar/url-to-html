@@ -14,10 +14,15 @@ class JobsController < ApplicationController
    end
   end
 
+  def fetch_job
+    job = Job.find(params[:id])
+    render :json => job, :callback => params[:callback]
+  end
+
   def fetch_job_status
     job = Job.find(params[:id])
-    job_status = job.completed? ? job : { jobID: job.id, status: "IN_PROGRESS" }
-    render :json => job_status, :callback => params[:callback]
+    job_status = job.completed? ? "COMPLETE" : "IN_PROGRESS"
+    render :json => { jobID: job.id, status: job_status }, :callback => params[:callback]
   end
 
   def invalid_route
